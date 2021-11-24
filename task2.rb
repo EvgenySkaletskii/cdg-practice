@@ -14,3 +14,9 @@ def greeting
         puts "Привет, #{name} #{surname}. Самое время заняться делом!"
     end
 end
+
+def foobar(left, right)
+    contain_20 = [left, right].any? { |number| number == 20 }
+
+    contain_20 ? right : left + right
+end
