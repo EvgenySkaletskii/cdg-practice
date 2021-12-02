@@ -2,4 +2,4 @@
 🌱 We’re currently learning **Ruby and Rails**
 
 Block schemes can be found there:
-https://miro.com/app/board/o9J_l-0-4AQ=/?invite_link_id=952486821318
+https://miro.com/app/board/uXjVOdmY_vA=/?invite_link_id=945341788456
