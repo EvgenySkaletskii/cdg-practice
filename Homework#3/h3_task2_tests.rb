@@ -22,24 +22,18 @@ end
 RSpec.describe "Test show_pokemons method" do
     it "Should return a string with pokemons is format [{name: 'A', color: 'B'}... N.times]" do
         pokemons = [{:color=>"Yellow", :name=>"Pikachu"}, {:color=>"Green", :name=>"Bulbazav"}]
-        expect do
-            show_pokemons(pokemons)
-        end.to output("[{name: 'Pikachu', color: 'Yellow'}, {name: 'Bulbazav', color: 'Green'}]\n").to_stdout
+        expect(show_pokemons(pokemons) ).to eq("[{name: 'Pikachu', color: 'Yellow'}, {name: 'Bulbazav', color: 'Green'}]")
     end
 
     it "Should return a string with pokemons with capitalized values" do
         pokemons = [{:color=>"yeLLow", :name=>"pikachU"}, {:color=>"GReen", :name=>"bulbazav"}]
-        expect do
-            show_pokemons(pokemons)
-        end.to output("[{name: 'Pikachu', color: 'Yellow'}, {name: 'Bulbazav', color: 'Green'}]\n").to_stdout
+        expect( show_pokemons(pokemons) ).to eq("[{name: 'Pikachu', color: 'Yellow'}, {name: 'Bulbazav', color: 'Green'}]")
     end
 end
 
 RSpec.describe "Test pokemons_game method" do
     it "Should display an array of hashed pokemons from the users input" do
         allow_any_instance_of(Kernel).to receive(:gets).and_return('1', 'Charmander', 'Orange')
-        expect do
-            pokemons_game
-        end.to output("Введите число покемонов >\nВведите имя покемона >\nВведите цвет покемона >\n[{name: 'Charmander', color: 'Orange'}]\n").to_stdout
+        expect { pokemons_game }.to output("Введите число покемонов >\nВведите имя покемона >\nВведите цвет покемона >\n[{name: 'Charmander', color: 'Orange'}]\n").to_stdout
     end
 end

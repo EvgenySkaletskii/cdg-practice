@@ -21,7 +21,7 @@ def show_pokemons(pokemons)
     pretty_pokemons = pokemons.map do |pokemon|
         "{name: '#{pokemon[:name].capitalize()}', color: '#{pokemon[:color].capitalize()}'}"
     end
-    puts "[#{pretty_pokemons.join(', ')}]"
+    "[#{pretty_pokemons.join(', ')}]"
 end
 
 def pokemons_game
@@ -29,5 +29,5 @@ def pokemons_game
     pokemons_number = gets.chomp.to_i
 
     pokemons = setup_pokemons(pokemons_number)
-    show_pokemons(pokemons)
+    puts show_pokemons(pokemons)
 end
