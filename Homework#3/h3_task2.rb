@@ -31,5 +31,3 @@ def pokemons_game
     pokemons = setup_pokemons(pokemons_number)
     show_pokemons(pokemons)
 end
-
-pokemons_game
