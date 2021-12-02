@@ -1,10 +1,14 @@
-def process_user_input
+def run_app
     puts "Введите слово >"
     word = gets.chomp
+    
+    puts process(word)
+end
 
+def process(word)
     if word.downcase.end_with?('cs')
-        puts 2 ** word.length
+         2 ** word.length
     else
-        puts word.reverse
+         word.reverse
     end
 end

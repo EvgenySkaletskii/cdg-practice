@@ -1,24 +1,32 @@
 require 'rspec'
 require './h3_task1.rb'
 
-RSpec.describe "Test user word" do
-    it "contains 'cs' in lowercase" do
-        allow_any_instance_of(Kernel).to receive(:gets).and_return('abbacs')
-        expect { process_user_input }.to output("Введите слово >\n64\n").to_stdout
+RSpec.describe "Test process method" do
+    it "Should return 2 ** word's lenght if word ends with 'cs'" do
+        expect(process('abbacs')).to eq(64)
     end
 
-    it "contains 'cs' in uppercase" do
-        allow_any_instance_of(Kernel).to receive(:gets).and_return('someCS')
-        expect { process_user_input }.to output("Введите слово >\n64\n").to_stdout
+    it "Should return 2 ** word's lenght if word ends with 'cs' in uppercase" do
+        expect(process('cCS')).to eq(8)
     end
 
-    it "doesn't contain 'cs'" do
-        allow_any_instance_of(Kernel).to receive(:gets).and_return('some')
-        expect { process_user_input }.to output("Введите слово >\nemos\n").to_stdout
+    it "Should return reversed word if word doesn't end with 'cs'" do
+        expect(process('kitten')).to eq('nettik')
     end
 
-    it "word less than 2 characters" do
-        allow_any_instance_of(Kernel).to receive(:gets).and_return('c')
-        expect { process_user_input }.to output("Введите слово >\nc\n").to_stdout
+    it "Should return reversed word if word contains 'cs' not on the end" do
+        expect(process('css')).to eq('ssc')
+    end
+end
+
+RSpec.describe "Test run_app method" do
+    it "Should run app with user's word that ends with 'cs'" do
+        allow_any_instance_of(Kernel).to receive(:gets).and_return('someCs')
+        expect { run_app }.to output("Введите слово >\n64\n").to_stdout
+    end
+
+    it "Should run app with user's word that doesn't ends with 'cs" do
+        allow_any_instance_of(Kernel).to receive(:gets).and_return('abba')
+        expect { run_app }.to output("Введите слово >\nabba\n").to_stdout
     end
 end
