@@ -1,11 +1,3 @@
-#1. Read the 'balance' file --> get the balance (100 if doesn't exist)
-#2. Puts instructions
-#3. Get user input
-#4. Perform action
-#   4.1 B -> show balance
-#   4.2 D -> get deposit sum -> check > 0 (Show error) -> add to balance -> show balance
-#   4.3 W -> get amount sum -> validate (>0 and < deposit) -> update balance -> show balance
-#   4.4 Q -> update balance file with the current balance
 
 BALANCE_FILE = 'balance.txt'
 DEFAULT_BALANCE = 100.0
