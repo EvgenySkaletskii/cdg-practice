@@ -47,6 +47,4 @@ def run_app
     show_users
 end
 
-run_app
-
 
