@@ -23,13 +23,23 @@ def show_balance
 end
 
 def deposit(value)
-    @balance += value
-    show_balance
+    if value > 0
+        @balance += value
+        show_balance
+    else
+        puts "Сумма не может быть меньше или равна нулю."
+    end
 end
 
-def credit(value)
-    @balance -= value
-    show_balance
+def withdraw(value)
+    if value > 0 && value <= @balance
+        @balance -= value
+        show_balance
+    elsif value <= 0
+        puts "Сумма не может быть меньше или равна нулю"
+    else 
+        puts "Недостаточно средств на счету. Ваш баланс #{@balance}"
+    end
 end
 
 def record_balance
@@ -52,13 +62,13 @@ def terminal
 
         case command
         when "d"
-            puts "Введите сумму:"
+            print "Введите сумму: "
             sum = gets.chomp.to_i
             deposit(sum)
         when "w"
-            puts "Введите сумму:"
+            print "Введите сумму: "
             sum = gets.chomp.to_i
-            credit(sum)
+            withdraw(sum)
         when "b"
             show_balance
         when "q"
@@ -69,6 +79,4 @@ def terminal
         end
     end
 end
-
-terminal
 
