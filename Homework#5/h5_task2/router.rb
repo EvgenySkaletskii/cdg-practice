@@ -33,8 +33,65 @@ module Resource
   end
 end
 
+class CommentsController
+  extend Resource
+  attr_reader :comments
+
+  def initialize
+    @comments = []
+  end
+
+  def index
+    @comments.each { |c| puts c }
+  end
+
+  def show
+    puts "Choose the comment id"
+    id = gets.chomp.to_i
+    if @comments[id - 1] && id != 0
+      puts @comments[id - 1]
+    else
+      puts "Incorrect comment id"
+    end
+  end
+
+  def create
+    puts "Enter the comment content"
+    comment = gets.chomp
+    @comments << comment
+    {
+      id: @comments.length,
+      content: comment,
+    }
+  end
+
+  def update
+    puts "Enter the comment id"
+    id = gets.chomp.to_i
+    if !@comments[id - 1]
+      puts "Incorrect comment id"
+      return
+    end
+    puts "Enter new content"
+    content = gets.chomp
+    @comments[id - 1] = content
+    puts @comments[id - 1]
+  end
+
+  def destroy
+    puts "Enter the comment id"
+    id = gets.chomp.to_i
+    if @comments[id - 1]
+      @comments.delete_at(id - 1)
+    else
+      puts "Incorrect comment id"
+    end
+  end
+end
+
 class PostsController
   extend Resource
+  attr_reader :posts
 
   def initialize
     @posts = []
@@ -95,12 +152,14 @@ class Router
 
   def init
     resources(PostsController, "posts")
+    resources(CommentsController, "comments")
 
     loop do
       print "Choose resource you want to interact (1 - Posts, 2 - Comments, q - Exit): "
       choise = gets.chomp
 
       PostsController.connection(@routes["posts"]) if choise == "1"
+      CommentsController.connection(@routes["comments"]) if choise == "2"
       break if choise == "q"
     end
 
@@ -121,6 +180,6 @@ class Router
   end
 end
 
-router = Router.new
+# router = Router.new
 
-router.init
+# router.init
